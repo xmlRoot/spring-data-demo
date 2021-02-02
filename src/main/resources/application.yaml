@@ -1,0 +1,60 @@
+spring:
+  jpa:
+    show-sql: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      jdbc:
+        batch_size: 50
+      generate_statistics: true
+      order_inserts: true
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL95Dialect
+        globally_quoted_identifiers: true
+        cache:
+          use_second_level_cache: true
+          region:
+            factory_class: com.hazelcast.hibernate.HazelcastCacheRegionFactory
+        prefer_sequence_per_entity : true
+        sequence_per_entity_suffix: "_seq"
+        jdbc:
+          batch_size: 50
+        generate_statistics: true
+        order_inserts: true
+        format_sql: true
+    open-in-view: false
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    username: ps_admin
+    password: W+x*.s[\BzX^&)7S
+    url: jdbc:postgresql://localhost:5432/dbdemo
+    hikari:
+      maximum-pool-size: 10
+      connection-timeout: 60000
+      idle-timeout: 120000
+      max-lifetime: 300000
+      minimum-idle: 8
+      jdbc-url: ${spring.datasource.url}
+      register-mbeans: true
+    driver-class-name:
+
+logging:
+  level:
+    root: info
+    org.springframework: info
+    org.springframework.web: info
+    org.springframework.orm.jpa: info
+    org.springframework.jdbc.core.JdbcTemplate: info
+    org.springframework.security.access.vote: info
+    org.springframework.security.web: info
+    org.springframework.data: info
+    org.springframework.transaction: info
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
+    com.zaxxer.hikari: debug
+    org.hibernate.transaction: info
+    org.hibernate.stat: debug
+    org.hibernate.engine.transaction: info
+
+server:
+  port: 8001
